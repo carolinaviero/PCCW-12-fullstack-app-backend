@@ -17,14 +17,14 @@ const getAllUsers = (req, res) => {
 
 const deleteUser = (req, res) => {
     User
-        .deleteOne({ name: req.body.name })
+        .deleteOne({ _id: req.params.id })
         .then(() => res.send('User deleted'))
         .catch(err => res.send(err))
 }
 
 const updateUser = (req, res) => {
     User
-        .findOneAndUpdate({ favoriteColor: req.body.favoriteColor }, { name: req.body.name })
+        .findOneAndUpdate({ _id: req.params.id }, req.body)
         .then(() => res.send("User updated"))
         .catch(err => res.send(err))
 
